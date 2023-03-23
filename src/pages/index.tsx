@@ -18,7 +18,8 @@ import Navbar from '../components/Navbar'
 import Vercel from '~/svg/Vercel.svg';
 import Footer from '@/components/Footer';
 import Home from '@/components/Home'
-//import Navbar from '@/components/Navbar';
+import TagsPage from '@/components/TagsPage';
+//import TAG from '@/components/Navbar';
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
@@ -36,7 +37,8 @@ export default function HomePage() {
           <Navbar />
           <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
 
-            <Home />
+            {/* <Home /> */}
+            <TagsPage />
             <footer className='absolute bottom-2 text-gray-700'>
               <Footer />
             </footer>

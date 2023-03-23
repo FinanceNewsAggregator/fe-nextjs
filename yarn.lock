@@ -7725,6 +7725,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-tailwindcss-select@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "react-tailwindcss-select@npm:1.8.5"
+  peerDependencies:
+    react: ^18.2.0
+  checksum: ae3d16cf8f1eaf7cf15af6377c40fa193b57ab01aba3fb258e925251eecbbe5b3513430b793c650438c43ce4416bcdb489050e5b8a9dc06af0ee1f2c6ff97917
+  languageName: node
+  linkType: hard
+
 "react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -8833,6 +8842,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-icons: ^4.8.0
+    react-tailwindcss-select: ^1.8.5
     tailwind-merge: ^1.10.0
     tailwindcss: ^3.2.7
     typescript: ^4.9.5
