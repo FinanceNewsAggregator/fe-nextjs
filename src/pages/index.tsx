@@ -24,19 +24,29 @@ export default function HomePage() {
     getNews(3);
   }, []);
 
+  const scrollNews = () => {
+    setnews((currentNews) => {
+      const lastNewsIndex = currentNews[currentNews.length - 1];
+      const nextNewsIndex = (lastNewsIndex + 1) % newsData.length;
+      const nextNews = newsData.slice(nextNewsIndex, nextNewsIndex + 3);
+      return [...currentNews, ...nextNews];
+    });
+  };
+
   return (
     <Layout>
       <Seo />
 
       <main>
-        <div className="slider-container">
+        <div className="slider-container ">
           {news.length > 0 ? (
             <>
               {news.map((newsItem, id) => (
                 <NewsCard key={id}
                   index={id + 1}
                   lastNewsIndex={news.length - 1}
-                  getVideos={getNews} />
+                  getVideos={getNews}
+                  className="mx-20" />
               ))}
             </>
           ) : (
@@ -46,7 +56,7 @@ export default function HomePage() {
           )}
         </div>
 
-        <BottomNav />
+        <BottomNav scrollNews={scrollNews} />
       </main>
     </Layout>
   );

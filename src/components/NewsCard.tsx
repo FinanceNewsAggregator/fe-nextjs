@@ -18,14 +18,16 @@ const NewsCard: React.FC = ({ index }) => {
           alignItems: "center",
           display: "flex",
           height: "100%",
+          flexDirection: "column",
         }}
       >
         {newsItem ? (
           <div>
-            <h1>{newsItem.headline}</h1>
+            <img src={newsItem.image} height={800} width={800} style={{ alignSelf: "center" }} />
+            <h1 className="text-3xl">{newsItem.headline}</h1>
             <ul>
               {newsItem.bulletPoints.map((point, i) => (
-                <li key={i}>{point}</li>
+                <li key={i} className="italic text-center">{point}</li>
               ))}
             </ul>
           </div>
@@ -35,7 +37,6 @@ const NewsCard: React.FC = ({ index }) => {
       </div>
     </div>
   );
-
 }
 
 export default NewsCard;

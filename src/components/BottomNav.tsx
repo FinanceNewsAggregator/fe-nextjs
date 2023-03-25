@@ -1,8 +1,11 @@
 import React from 'react';
+import Link from 'next/link';
+import newsData from '../mocked_data/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faPlus, faComment, faUser, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPlus, faUpLong, faUser, faHome } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from 'next/router';
 
-const BottomNav: React.FC = () => {
+const BottomNav: React.FC = ({ scrollNews }) => {
   return (
     <div>
       <nav className="bottom-nav">
@@ -12,11 +15,11 @@ const BottomNav: React.FC = () => {
         <a className="navbar-brand" href="/">
           <FontAwesomeIcon icon={faSearch} />
         </a>
-        <a className="navbar-brand" href="/">
+        <Link href={`/article?id=${newsData[0].id}`} className="navbar-brand">
           <FontAwesomeIcon icon={faPlus} />
-        </a>
-        <a className="navbar-brand" href="/">
-          <FontAwesomeIcon icon={faComment} />
+        </Link>
+        <a className="navbar-brand" href="/" onClick={scrollNews}>
+          <FontAwesomeIcon icon={faUpLong} style={{ color: "#ffffff", }} />
         </a>
         <a className="navbar-brand" href="/">
           <FontAwesomeIcon icon={faUser} />
