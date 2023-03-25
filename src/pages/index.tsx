@@ -2,34 +2,25 @@ import * as React from 'react';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import Navbar from '../components/Navbar';
 import { useState, useEffect } from "react";
 
 import BottomNav from "../components/BottomNav";
 import NewsCard from "../components/NewsCard";
 
-import Footer from '@/components/Footer';
-import Home from '@/components/Home';
-import TagsPage from '@/components/TagsPage';
+import newsData from '../mocked_data/data';
 
 export default function HomePage() {
-  const [news, setnews] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const getNews = (length) => {
-    let newNews = Array.from(Array(length).keys());
-    setnews((oldNews) => [...oldNews, ...newNews]);
-  };
-
-  useEffect(() => {
-    getNews(3);
-  }, []);
-
-  const scrollNews = () => {
-    setnews((currentNews) => {
-      const lastNewsIndex = currentNews[currentNews.length - 1];
-      const nextNewsIndex = (lastNewsIndex + 1) % newsData.length;
-      const nextNews = newsData.slice(nextNewsIndex, nextNewsIndex + 3);
-      return [...currentNews, ...nextNews];
+  const scrollNews = (direction) => {
+    setCurrentIndex((prevIndex) => {
+      let newIndex;
+      if (direction === "up") {
+        newIndex = prevIndex === 0 ? newsData.length - 1 : prevIndex - 1;
+      } else {
+        newIndex = (prevIndex + 1) % newsData.length;
+      }
+      return newIndex;
     });
   };
 
@@ -38,25 +29,15 @@ export default function HomePage() {
       <Seo />
 
       <main>
-        <div className="slider-container ">
-          {news.length > 0 ? (
-            <>
-              {news.map((newsItem, id) => (
-                <NewsCard key={id}
-                  index={id + 1}
-                  lastNewsIndex={news.length - 1}
-                  getVideos={getNews}
-                  className="mx-20" />
-              ))}
-            </>
-          ) : (
-            <>
-              <h1>Nothing to show here</h1>
-            </>
-          )}
+        <div className="pt-16 pb-4 flex flex-col items-center">
+          <h1 className="text-4xl font-semibold mb-2">Dripper News</h1>
+          <h2 className="text-2xl font-medium">Latest News</h2>
+        </div>
+        <div className="flex justify-center">
+          <NewsCard index={currentIndex} />
         </div>
 
-        <BottomNav scrollNews={scrollNews} />
+        <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
       </main>
     </Layout>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import newsData from '../mocked_data/data';
-import { NewsItem } from '../mocked_data/types';
+import newsData from '../../src/mocked_data/data'; // Updated import path
 import { useRouter } from 'next/router';
+import BottomNav from '@/components/BottomNav';
 
 interface ArticleProps {
   newsItem: NewsItem;
@@ -17,6 +17,7 @@ const Article: React.FC<ArticleProps> = ({ newsItem }) => {
           <li key={i} className="italic text-center">{point}</li>
         ))}
       </ul>
+      <BottomNav />
     </div>
   );
 };

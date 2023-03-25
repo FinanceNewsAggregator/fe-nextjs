@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import newsData from '../mocked_data/data';
-
+import BottomNav from '../components/BottomNav';
 
 
 const Summary: React.FC = () => {
@@ -23,6 +23,7 @@ const Summary: React.FC = () => {
           <li key={i} className="italic text-center mb-2">{summary}</li>
         ))}
       </ul>
+      <BottomNav />
     </div>
   );
 };

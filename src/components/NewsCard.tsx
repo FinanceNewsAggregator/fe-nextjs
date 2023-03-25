@@ -1,39 +1,29 @@
 import React from 'react';
-import { useRef, useState } from "react";
-import useIsInViewport from "../components/useIsInViewport";
 import newsData from '../mocked_data/data';
+import Link from 'next/link';
 
-const NewsCard: React.FC = ({ index }) => {
-  const newsItem = newsData[index - 1]; // Subtract 1 to match array index
-  const elementRef = useRef();
-  const isInViewport = useIsInViewport(elementRef);
+const NewsCard = ({ index }) => {
+  const newsItem = newsData[index];
 
   return (
-    <div className="slider-children">
-      <div
-        ref={elementRef}
-        id={index}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-          height: "100%",
-          flexDirection: "column",
-        }}
-      >
-        {newsItem ? (
-          <div>
-            <img src={newsItem.image} height={800} width={800} style={{ alignSelf: "center" }} />
-            <h1 className="text-3xl">{newsItem.headline}</h1>
-            <ul>
-              {newsItem.bulletPoints.map((point, i) => (
-                <li key={i} className="italic text-center">{point}</li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <h1>Loading...</h1>
-        )}
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-md">
+      <img src={newsItem.image} className="w-full h-64 object-cover" />
+      <div className="p-6">
+        <h2 className="text-2xl font-bold mb-3">{newsItem.headline}</h2>
+        <ul className="mb-4">
+          {newsItem.bulletPoints.map((point, i) => (
+            <li key={i} className="italic text-center">{point}</li>
+          ))}
+        </ul>
+        <div>
+          <Link href={`/news/summary/${newsItem.id}`}>
+            <span className="cursor-pointer text-blue-600 hover:text-blue-800">Read Summary</span>
+          </Link>
+          <span> | </span>
+          <Link href={`/news/article/${newsItem.id}`}>
+            <span className="cursor-pointer text-blue-600 hover:text-blue-800">Read Article</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

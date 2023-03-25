@@ -1,27 +1,29 @@
-import React from 'react';
-import { useEffect, useState, useMemo } from "react";
+import { useState, useEffect, useRef } from 'react';
 
-
-const useIsInViewport: React.FC = (ref) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIsIntersecting(entry.isIntersecting)
-      ),
-    []
-  );
+const useIsInViewport = (ref) => {
+  const [isInViewport, setIsInViewport] = useState(false);
 
   useEffect(() => {
-    observer.observe(ref.current);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.1,
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => {
       observer.disconnect();
     };
-  }, [ref, observer]);
+  }, [ref]);
 
-  return isIntersecting;
-}
+  return isInViewport;
+};
 
 export default useIsInViewport;
