@@ -38,13 +38,13 @@ const Article: React.FC<ArticleProps> = ({ newsItem, onArticleRead }) => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-4 text-black">
       <div className="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
         <div className="h-1 bg-primary" style={{ width: `${progressPercentage}%` }}></div>
       </div>
       <h1 className="text-3xl mb-4">{newsItem.headline}</h1>
       <ul>
-        {newsItem.bulletPoints.map((point, i) => (
+        {newsItem.summary.map((point, i) => (
           <li key={i} className="italic text-center">{point}</li>
         ))}
       </ul>

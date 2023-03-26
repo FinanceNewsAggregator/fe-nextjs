@@ -1,4 +1,5 @@
 // src/components/Profile.tsx
+import BottomNav from '@/components/BottomNav';
 import React, { useState } from 'react';
 
 interface User {
@@ -44,6 +45,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
           </div>
         </div>
       </div>
+      <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
     </div>
   );
 };
