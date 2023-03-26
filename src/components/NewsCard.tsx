@@ -8,12 +8,14 @@ const NewsCard = ({ index }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-md">
-      <img src={newsItem.image} className="w-full h-64 object-cover" />
+      <img src={newsItem.results.map((result, i) => (
+        <img key={i} src={result.image_url} className="w-full h-64 object-cover" />
+      ))} />
       <div className="p-6">
         <h2 className="text-2xl font-bold mb-3">{newsItem.headline}</h2>
         <ul className="mb-4">
-          {newsItem.bulletPoints.map((point, i) => (
-            <li key={i} className="italic text-center">{point}</li>
+          {newsItem.results.map((result, i) => (
+            <li key={i} className="italic text-center">{result.description}</li>
           ))}
         </ul>
 
@@ -26,7 +28,6 @@ const NewsCard = ({ index }) => {
             <span className="cursor-pointer text-blue-600 hover:text-blue-800">Read Article</span>
           </Link>
         </div>
-
       </div>
     </div>
   );
