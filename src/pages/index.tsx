@@ -28,9 +28,9 @@ export default function HomePage() {
     <Layout>
       <Seo />
 
-      <main>
+      <main className="text-black">
         <div className="pt-16 pb-4 flex flex-col items-center">
-          <h1 className="text-4xl font-semibold mb-2">Dripper News</h1>
+          <h1 className="text-4xl font-semibold mb-2 ">Dripper News</h1>
           <h2 className="text-2xl font-medium">Latest News</h2>
         </div>
         <div className="flex justify-center">
