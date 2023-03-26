@@ -1,6 +1,7 @@
 import React from 'react';
 import newsData from '../mocked_data/data';
 import Link from 'next/link';
+import BottomNav from '@/components/BottomNav';
 
 const NewsCard = ({ index }) => {
   const newsItem = newsData[index];
@@ -15,7 +16,8 @@ const NewsCard = ({ index }) => {
             <li key={i} className="italic text-center">{point}</li>
           ))}
         </ul>
-        <div>
+
+        <div className="w-full p-5 items-center justify-center">
           <Link href={`/news/summary/${newsItem.id}`}>
             <span className="cursor-pointer text-blue-600 hover:text-blue-800">Read Summary</span>
           </Link>
@@ -24,6 +26,7 @@ const NewsCard = ({ index }) => {
             <span className="cursor-pointer text-blue-600 hover:text-blue-800">Read Article</span>
           </Link>
         </div>
+
       </div>
     </div>
   );

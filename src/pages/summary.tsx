@@ -10,15 +10,17 @@ interface SummaryProps {
 
 const Summary: React.FC<SummaryProps> = ({ newsItem }) => {
   return (
-    <div className="p-4 text-black">
-      <img src={"https://picsum.photos/200/300"} height={300} width={200} className="mx-auto mb-4" />
-      <h1 className="text-3xl mb-4">{newsItem.headline}</h1>
-      <ul>
-        {newsItem.summary.map((summary, i) => (
-          <li key={i} className="italic text-center mb-2">{summary}</li>
-        ))}
-      </ul>
-      <BottomNav />
+    <div className="flex h-screen justify-center bg-indigo-50 px-4 text-black">
+      <div className="py-5 max-w-sm overflow-hidden rounded-xl bg-white shadow-md">
+        <img src={newsItem.image} className="w-full h-64 object-cover rounded-md" />
+        <h1 className="text-3xl m-4 text-center">{newsItem.headline}</h1>
+        <ul>
+          {newsItem.summary.map((summary, i) => (
+            <li key={i} className="italic text-center mb-2 p-2">{summary}</li>
+          ))}
+        </ul>
+        <BottomNav />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 const LoginPage: React.FC = () => {
@@ -40,12 +41,14 @@ const LoginPage: React.FC = () => {
             className="w-full px-3 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Login
-        </button>
+        <Link href="/news-lenght">
+          <button
+            type="submit"
+            className="w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Login
+          </button>
+        </Link>
         <p className="text-center mt-4 text-black">
           Don't have an account?{' '}
           <a href="/signup" className="text-grey-900 underline underline-offset-2 hover:text-grey-300">

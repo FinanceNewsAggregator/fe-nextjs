@@ -29,15 +29,17 @@ export default function HomePage() {
       <Seo />
 
       <main className="text-black">
-        <div className="pt-16 pb-4 flex flex-col items-center">
-          <h1 className="text-4xl font-semibold mb-2 ">Dripper News</h1>
-          <h2 className="text-2xl font-medium">Latest News</h2>
-        </div>
-        <div className="flex justify-center">
-          <NewsCard index={currentIndex} />
-        </div>
+        <div class="flex-col h-screen items-center justify-center bg-indigo-50 px-4">
+          <div className="pt-16 pb-4 flex flex-col items-center">
+            <h1 className="text-4xl font-semibold mb-2 ">Dripper News</h1>
+            <h2 className="text-2xl font-medium">Latest News</h2>
+          </div>
+          <div className="flex justify-center">
+            <NewsCard index={currentIndex} />
+          </div>
+          <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
 
-        <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
+        </div>
       </main>
     </Layout>
   );

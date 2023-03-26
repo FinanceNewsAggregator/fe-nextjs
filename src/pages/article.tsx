@@ -38,16 +38,25 @@ const Article: React.FC<ArticleProps> = ({ newsItem, onArticleRead }) => {
   }, []);
 
   return (
-    <div className="p-4 text-black">
-      <div className="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
-        <div className="h-1 bg-primary" style={{ width: `${progressPercentage}%` }}></div>
+    <div className="flex h-screen justify-center bg-indigo-50 px-4 text-black">
+      <div className="h-1 p-4 bg-primary" style={{ width: `${progressPercentage}%` }}>
       </div>
-      <h1 className="text-3xl mb-4">{newsItem.headline}</h1>
-      <ul>
-        {newsItem.summary.map((point, i) => (
-          <li key={i} className="italic text-center">{point}</li>
-        ))}
-      </ul>
+      <div className="py-5 max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 ">
+        <div className="h-1 p-2 mx-2 bg-neutral-200 dark:bg-neutral-600">
+
+        </div>
+        <div className="h-1 p-2">
+          <img src={newsItem.image} className="w-full h-64 object-cover rounded-md" />
+          <h1 className="text-3xl m-4">{newsItem.headline}</h1>
+          <ul>
+            {newsItem.article.split('. ').map((point, i) => (
+              <p key={i} className="italic text-center m-4">
+                {point.trim()}
+              </p>
+            ))}
+          </ul>
+        </div>
+      </div>
       <BottomNav />
     </div>
   );
