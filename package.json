@@ -28,6 +28,7 @@
     "next": "^13.2.4",
     "openai": "^3.2.1",
     "react": "^18.2.0",
+    "react-animated-progress-bar": "^1.1.2",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",

@@ -1,18 +1,38 @@
 import * as React from 'react';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import CombinedCard from "../components/CombinedCard";
 import combinedData from '../mocked_data/combinedData';
+import ProgressBar from 'react-animated-progress-bar';
+
+
+import dynamic from 'next/dynamic';
+
+const ReactAnimatedProgressBar = dynamic(
+  () => import('react-animated-progress-bar'),
+  { ssr: false }
+);
 
 export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [counter, setCounter] = useState(10);
+  const timerRef = useRef(null);
 
-  const scrollNews = (direction) => {
+  const scrollNews = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % combinedData.length;
+      return newIndex;
+    });
+  };
+
+  const handleButtonClick = (direction) => {
+    clearInterval(timerRef.current);
+
     setCurrentIndex((prevIndex) => {
       let newIndex;
-      if (direction === "up") {
+      if (direction === "previous") {
         newIndex = prevIndex === 0 ? combinedData.length - 1 : prevIndex - 1;
       } else {
         newIndex = (prevIndex + 1) % combinedData.length;
@@ -20,6 +40,25 @@ export default function HomePage() {
       return newIndex;
     });
   };
+
+  useEffect(() => {
+    const updateCounter = () => {
+      setCounter((prevCounter) => {
+        if (prevCounter === 1) {
+          scrollNews();
+          return 10;
+        } else {
+          return prevCounter - 1;
+        }
+      });
+    };
+
+    timerRef.current = setInterval(updateCounter, 1000);
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <Layout>
@@ -31,12 +70,36 @@ export default function HomePage() {
             <h1 className="text-4xl font-semibold mb-2 ">Dripper News</h1>
             <h2 className="text-2xl font-medium">Latest News</h2>
           </div>
+          <ReactAnimatedProgressBar
+            width="100%"
+            height="5px"
+            rect
+            fontColor="black"
+            percentage={`${(10 - counter) * 10}`}
+            rectPadding="1px"
+            rectBorderRadius="20px"
+            trackPathColor="transparent"
+            bgColor="#e6e6e6"
+            trackBorderColor="#e6e6e6"
+            trackBorderWidth="1px"
+            trackBorderRadius="20px"
+            trackColor="#3a3a3a"
+            trackWidth="100%"
+            trackRemainingPathColor="#e6e6e6"
+            pointerRadius="0px"
+            pointerColor="#3a3a3a"
+            pointerBorderWidth="0px"
+            pointerBorderColor="transparent"
+          />
           <div className="flex justify-center">
             <div className="w-96 overflow-hidden rounded-xl bg-white p-5">
               <CombinedCard item={combinedData[currentIndex]} />
               <div className="mt-3 flex space-x-4">
-                <button onClick={() => scrollNews("up")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Previous</button>
-                <button onClick={() => scrollNews("down")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Next</button>
+                <button onClick={() => handleButtonClick("previous")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Previous</button>
+                <button onClick={() => handleButtonClick("next")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Next</button>
+              </div>
+              <div className="mt-3 flex space-x-4">
+                <p>Changing content in {counter} seconds</p>
               </div>
             </div>
           </div>
@@ -45,4 +108,3 @@ export default function HomePage() {
     </Layout>
   );
 }
-
