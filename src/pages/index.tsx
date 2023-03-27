@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ArticleSummary from '../components/ArticleSummary';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -36,6 +37,7 @@ export default function HomePage() {
           </div>
           <div className="flex justify-center">
             <NewsCard index={currentIndex} />
+            {/* <ArticleSummary content="Your article content..." /> */}
           </div>
           <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
 

@@ -1,3 +1,10 @@
+const summarizeArticle = require('../open_ai/summarizeArticle');
+
+async function generateSummary(content) {
+  const summary = await summarizeArticle(content);
+  return summary;
+}
+
 const newsData = [
   {
     "status": "success",
@@ -243,4 +250,16 @@ const newsData = [
   }
 ];
 
-export default newsData;
+async function getNewsData() {
+  for (let i = 0; i < newsData.results.length; i++) {
+    if (newsData.results[i].content !== null) {
+      newsData.results[i].summary = await generateSummary(newsData.results[i].content);
+    } else {
+      newsData.results[i].summary = "No summary available."; // Set a default summary if content is null
+    }
+  }
+  return newsData.results;
+}
+
+
+module.exports = getNewsData;

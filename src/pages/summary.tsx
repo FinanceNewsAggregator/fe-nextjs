@@ -29,7 +29,16 @@ export default Summary;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id as string;
-  const newsItem = newsData.find((item) => item.id === parseInt(id, 10));
+  if (!newsData || !newsData.results) {
+    // Handle the case where newsData or newsData.results is undefined or null
+    console.error('newsData or newsData.results is undefined');
+    return {
+      notFound: true,
+    };
+  }
+
+  const newsItem = newsData.results.find((item) => item.id === parseInt(id, 10));
+
 
   if (!newsItem) {
     return {

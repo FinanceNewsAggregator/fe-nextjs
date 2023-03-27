@@ -129,3 +129,26 @@ body {
   @apply: bg-green-400;
   background-color: #68D391;
 }
+
+.scroll-container {
+  height: 200px;
+  /* Adjust this value based on your desired container height */
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-content {
+  position: absolute;
+  white-space: nowrap;
+  animation: scrolling 10s linear infinite;
+}
+
+@keyframes scrolling {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
