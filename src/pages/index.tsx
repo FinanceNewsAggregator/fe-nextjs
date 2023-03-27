@@ -1,14 +1,10 @@
 import * as React from 'react';
-import ArticleSummary from '../components/ArticleSummary';
-
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import BottomNav from "../components/BottomNav";
-import NewsCard from "../components/NewsCard";
-
-import newsData from '../mocked_data/data';
+import CombinedCard from "../components/CombinedCard";
+import combinedData from '../mocked_data/combinedData';
 
 export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,9 +13,9 @@ export default function HomePage() {
     setCurrentIndex((prevIndex) => {
       let newIndex;
       if (direction === "up") {
-        newIndex = prevIndex === 0 ? newsData.length - 1 : prevIndex - 1;
+        newIndex = prevIndex === 0 ? combinedData.length - 1 : prevIndex - 1;
       } else {
-        newIndex = (prevIndex + 1) % newsData.length;
+        newIndex = (prevIndex + 1) % combinedData.length;
       }
       return newIndex;
     });
@@ -36,13 +32,17 @@ export default function HomePage() {
             <h2 className="text-2xl font-medium">Latest News</h2>
           </div>
           <div className="flex justify-center">
-            <NewsCard index={currentIndex} />
-            {/* <ArticleSummary content="Your article content..." /> */}
+            <div className="w-96 overflow-hidden rounded-xl bg-white p-5">
+              <CombinedCard item={combinedData[currentIndex]} />
+              <div className="mt-3 flex space-x-4">
+                <button onClick={() => scrollNews("up")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Previous</button>
+                <button onClick={() => scrollNews("down")} className="w-full rounded-md bg-black py-2 text-indigo-100 hover:bg-indigo-500 hover:shadow-md duration-75">Next</button>
+              </div>
+            </div>
           </div>
-          <BottomNav scrollNewsUp={() => scrollNews("up")} scrollNewsDown={() => scrollNews("down")} />
-
         </div>
       </main>
     </Layout>
   );
 }
+
