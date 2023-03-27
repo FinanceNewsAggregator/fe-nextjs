@@ -15,12 +15,11 @@ const TwitterCard = ({ tweet }) => {
       </div>
       <div className="tweet-text">
         <p className="my-2">{tweet.text}</p>
-
       </div>
       <div className="tweet-meta">
         {/* <p >{tweet.user.description}</p> */}
-        <span className="text-sm italic my-2"> Read Full Thread<a href={tweet.user.url}>{tweet.user.url}</a></span>
-        <p>Posted at: {formatDate(tweet.created_at)}</p>
+        <span className="text-base font-normal text-gray-600"> Read Full Thread<a href={tweet.user.url}>{tweet.user.url}</a></span>
+        <p className="text-sm font-normal text-gray-600">Posted at: {formatDate(tweet.created_at)}</p>
       </div>
     </div>
   );
