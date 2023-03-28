@@ -1,7 +1,7 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeCircleCheck, faGlobe, faTwitter } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import React from 'react';
 
 const SelectSources: React.FC = () => {
   return <div className=" group py-10 bg-gray-100  max-w-sm flex justify-center items-center  mx-auto ">

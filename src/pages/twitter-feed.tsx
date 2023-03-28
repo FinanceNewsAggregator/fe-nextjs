@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import React, { useState } from 'react';
+
 import TwitterCard from '../components/TwitterCard';
 import twitter_data from '../mocked_data/twitter_data';
 
@@ -20,7 +22,7 @@ const TwitterFeed = () => {
           <div className="relative flex h-20 w-full justify-center rounded-xl bg-cover" >
             {/* <img src="https://www.webxpro.es/wp-content/uploads/2014/11/twitter.jpg" class="absolute flex h-32 w-full justify-center rounded-xl bg-cover" /> */}
             <div className="mt-2 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-              <img className="h-full w-full rounded-full" src='https://i.pravatar.cc/200' alt="" />
+              <Image className="h-full w-full rounded-full" src='https://i.pravatar.cc/200' alt="" />
             </div>
           </div>
           <div className="flex flex-col items-center mt-4">

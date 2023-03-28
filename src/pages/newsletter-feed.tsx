@@ -1,5 +1,6 @@
 // src/pages/newsletter-feed.tsx
 import React, { useState } from 'react';
+
 import NewsletterCard from '../components/NewsletterCard';
 import newsletter_data from '../mocked_data/newsletter_data';
 

@@ -1,10 +1,10 @@
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { AppProps } from 'next/app';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 import '@fortawesome/fontawesome-svg-core/styles.css'; //importing font awesome css
-import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
 

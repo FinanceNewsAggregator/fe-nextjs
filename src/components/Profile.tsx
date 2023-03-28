@@ -1,6 +1,7 @@
 // src/components/Profile.tsx
-import BottomNav from '@/components/BottomNav';
 import React, { useState } from 'react';
+
+import BottomNav from '@/components/BottomNav';
 
 interface User {
   name: string;

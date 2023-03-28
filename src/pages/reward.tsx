@@ -1,6 +1,7 @@
 // pages/reward.tsx
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
+
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 

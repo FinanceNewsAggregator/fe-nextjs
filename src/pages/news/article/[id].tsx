@@ -1,6 +1,7 @@
 // pages/news/article/[id].tsx
-import React from 'react';
 import { useRouter } from 'next/router';
+import React from 'react';
+
 import newsData from '../../../mocked_data/data';
 
 const Article: React.FC = () => {

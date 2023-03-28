@@ -1,8 +1,9 @@
-import React from 'react';
-import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import React from 'react';
+
 import newsData from '../mocked_data/data';
-import BottomNav from '../components/BottomNav';
+
 
 interface SummaryProps {
   newsItem: NewsItem;
@@ -12,14 +13,13 @@ const Summary: React.FC<SummaryProps> = ({ newsItem }) => {
   return (
     <div className="flex h-screen justify-center bg-indigo-50 px-4 text-black">
       <div className="py-5 max-w-sm overflow-hidden rounded-xl bg-white shadow-md">
-        <img src={newsItem.image} className="w-full h-64 object-cover rounded-md" />
+        {/* <Image src={newsItem.image} className="w-full h-64 object-cover rounded-md" alt="" /> */}
         <h1 className="text-3xl m-4 text-center">{newsItem.headline}</h1>
         <ul>
           {newsItem.summary.map((summary, i) => (
             <li key={i} className="italic text-center mb-2 p-2">{summary}</li>
           ))}
         </ul>
-        <BottomNav />
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
-import { React, useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
-import newsData from '../../src/mocked_data/data'; // Updated import path
-import { useRouter } from 'next/router';
+import { React, useEffect,useState } from 'react';
+
 import BottomNav from '@/components/BottomNav';
+
+import newsData from '../../src/mocked_data/data'; // Updated import path
 
 interface ArticleProps {
   newsItem: NewsItem;

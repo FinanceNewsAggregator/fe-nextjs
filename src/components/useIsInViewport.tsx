@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect,useState } from 'react';
 
 const useIsInViewport = (ref) => {
   const [isInViewport, setIsInViewport] = useState(false);

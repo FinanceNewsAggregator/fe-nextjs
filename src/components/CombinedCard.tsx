@@ -1,5 +1,6 @@
 // src/components/CombinedCard.tsx
 import React from 'react';
+
 import NewsCard from '../components/NewsCard';
 import NewsletterCard from '../components/NewsletterCard';
 import TwitterCard from '../components/TwitterCard';

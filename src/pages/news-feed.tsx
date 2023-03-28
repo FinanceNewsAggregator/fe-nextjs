@@ -1,5 +1,6 @@
 // src/pages/NewsFeed.tsx
 import React, { useState } from 'react';
+
 import NewsCard from '../components/NewsCard';
 import newsData from '../mocked_data/data';
 

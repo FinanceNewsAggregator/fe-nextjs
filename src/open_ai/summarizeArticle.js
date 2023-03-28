@@ -1,5 +1,6 @@
 // summarizeArticle.js
 //require('dotenv').config();
+import openai from 'openai';
 const openaiApiKey = process.env.OPENAI_API_KEY;
 
 
