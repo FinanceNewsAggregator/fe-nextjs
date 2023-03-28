@@ -100,11 +100,8 @@ export default function HomePage() {
               <div className="mt-3 flex-col space-x-4">
                 <p className="my-2">Changing content in {counter} seconds</p>
                 <BottomNav scrollNews={undefined} />
-
               </div>
-
             </div>
-
           </div>
         </div>
       </main>

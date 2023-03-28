@@ -1,0 +1,16 @@
+.slider-modal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  overflow: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-modal.slide-up {
+  transform: translateY(-100%);
+}
