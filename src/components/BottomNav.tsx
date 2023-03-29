@@ -7,10 +7,10 @@ import newsData from '../mocked_data/data';
 
 const BottomNav = ({ scrollNews }) => (
 
-  <div className=" bg-white flex items-center justify-center">
+  <div className="flex items-center justify-center max-w-sxl absolute inset-x-0 bottom-0">
     <hr />
-    <div className="w-full max-w-md mx-auto items-center justify-center mt-4">
-      <div className=" bg-slate-800 shadow-lg rounded-md ">
+    <div className="w-full max-w-sxl mx-auto items-center justify-center mt-4">
+      <div className=" bg-black ">
         <div className="flex">
           <div className="flex-1 group">
             <a href="#" className="flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-white group-hover:text-gray-50">
