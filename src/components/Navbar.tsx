@@ -1,5 +1,5 @@
 import { faBookmark, faCirclePlus, faEnvelope, faHouse, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon, faUpRight } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 // import { Container } from './styles';
