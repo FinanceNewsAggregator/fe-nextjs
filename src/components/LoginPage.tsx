@@ -5,19 +5,36 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Add logic to handle authentication and submission
+
+    const response = await fetch('https://donguillotine.pythonanywhere.com/api/token/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: email,
+        password: password,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      // Save the authentication token in localStorage
+      localStorage.setItem('authToken', data.access);
+      // Redirect the user to the news page or any other protected page
+      window.location.href = '/news-lenght';
+    } else {
+      // Handle error, show a message or something else
+      alert('Invalid email or password');
+    }
   };
 
   return (
     <div className="flex h-screen items-center justify-center bg-indigo-50">
       <div className="max-w-sm overflow-hidden rounded-xl bg-white text-black">
         <div className="relative flex h-20 w-full justify-center rounded-xl bg-cover" >
-          {/* <img src="https://www.webxpro.es/wp-content/uploads/2014/11/twitter.jpg" class="absolute flex h-32 w-full justify-center rounded-xl bg-cover" /> */}
-          <div className="mt-2 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src="/DripperLogo.jpg" alt="" />
-          </div>
         </div>
         <h1 className="text-4xl font-bold mb-3 text-black">Dripper News</h1>
         <p className="text-lg text-center mb-6 text-black">Dripper News: Your Personalized Tech News Hub</p>
@@ -48,14 +65,14 @@ const LoginPage: React.FC = () => {
               className="w-full px-3 py-2 border rounded border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
-          <Link href="/news-lenght">
-            <button
-              type="submit"
-              className="w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Login
-            </button>
-          </Link>
+
+          <button
+            type="submit"
+            className="w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Login
+          </button>
+
           <p className="text-center mt-4 text-black">
             Don't have an account?{' '}
             <a href="/signup" className="text-grey-900 underline underline-offset-2 hover:text-grey-300">

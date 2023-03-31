@@ -1,10 +1,8 @@
-import * as React from 'react';
-
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-
 import NewsCard from "../components/NewsCard";
-import newsData from '../mocked_data/data';
+import { newsData } from '../mocked_data/data'; // Import newsData from the data file
 import BottomNav from '@/components/BottomNav';
 import Navbar from '@/components/Navbar';
 
@@ -20,9 +18,9 @@ export default function HomePage() {
               <div className="overflow-hidden rounded-xl bg-white p-5">
                 <Navbar />
                 <div className="max-h-[calc(200vh-430px)] overflow-y-auto">
-                  {newsData.map((news, index) => (
+                  {newsData.results.map((news, index) => (
                     <div key={index} className="mb-4">
-                      <NewsCard news={news} profile={news.profile} />
+                      <NewsCard news={news} />
                     </div>
                   ))}
                 </div>
