@@ -1,35 +1,45 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { API_BASE_URL } from "../../config";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const response = await fetch('https://donguillotine.pythonanywhere.com/api/token/', {
-      method: 'POST',
+  const loginUser = async (email: string, password: string) => {
+    const response = await fetch(`${API_BASE_URL}api/token/`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: email,
+        email: email,
         password: password,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
-      // Save the authentication token in localStorage
+      // Save the authentication token
       localStorage.setItem('authToken', data.access);
-      // Redirect the user to the news page or any other protected page
-      window.location.href = '/news-lenght';
+      // Redirect the user to the desired page after successful login
+      // Replace '/dashboard' with the desired route
+      window.location.href = '/src/pages/index.tsx';
     } else {
-      // Handle error, show a message or something else
-      alert('Invalid email or password');
+      const errorData = await response.json();
+      // Display an error message
+      // Replace 'errorMessage' with the appropriate HTML element ID
+      const errorMessageElement = document.getElementById('errorMessage');
+      if (errorMessageElement) {
+        errorMessageElement.textContent = errorData.detail;
+      }
     }
   };
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await loginUser(email, password);
+  };
+
 
   return (
     <div className="flex h-screen items-center justify-center bg-indigo-50">
@@ -37,7 +47,7 @@ const LoginPage: React.FC = () => {
         <div className="relative flex h-20 w-full justify-center rounded-xl bg-cover" >
         </div>
         <h1 className="text-4xl font-bold mb-3 text-black">Dripper News</h1>
-        <p className="text-lg text-center mb-6 text-black">Dripper News: Your Personalized Tech News Hub</p>
+        <p className="text-lg text-center mb-6 text-black">A personalized news platform that provides insightful analysis for tech professionals.</p>
         <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white p-8 rounded shadow">
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 mb-2">
